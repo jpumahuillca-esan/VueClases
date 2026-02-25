@@ -1,42 +1,105 @@
-# Clase01
+<<<<
+# Masterclass: Desarrollo Web con Vue 3 🚀
 
-This template should help get you started developing with Vue 3 in Vite.
+Guía completa para dominar los fundamentos de Vue.js, Composition API y TypeScript.
 
-## Recommended IDE Setup
+## 🛠️ 1. Instalación y Configuración
+El comando principal para iniciar proyectos modernos es:
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+``` bash
+npm create vue@latest
+```
 
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+### Pasos obligatorios:
+``` bash
+cd nombre-del-proyecto
+```
+``` bash
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
+``` 
+``` bash
 npm run dev
+``` 
+## 🧊 2. El núcleo: Reactividad con ref()
+En Vue 3, una variable común no actualiza el DOM. Usamos ref para crear una referencia reactiva.
+
+``` typescript
+import { ref } from 'vue';
+// Definición: ref(valor_inicial)
+const contador = ref<number>(0);
+// IMPORTANTE: En el script SIEMPRE usamos .value
+const sumar = () => {
+contador.value++;
+}
+
+
+
 ```
 
-### Type-Check, Compile and Minify for Production
+## 🚦 3. Directivas de Control
 
-```sh
-npm run build
+### v-if, v-else-if, v-else
+Para lógica condicional directamente en el HTML:
+``` html
+<p v-if="contador === 0">No hay clics aún</p>
+<p v-else-if="contador < 10">¡Sigue presionando!</p>
+<p v-else>¡Nivel experto alcanzado!</p>
 ```
+
+### v-for (Renderizado de listas)
+Itera sobre arreglos o rangos. Regla de oro: Siempre usa :key.
+``` html
+
+<div v-for="n in contador" :key="n">
+Iteración número {{ n }}
+</div>
+```
+
+## 🎨 4. Clases Dinámicas y Estilos
+Para sombrear o resaltar elementos según el estado, usamos :class.
+
+``` html
+<button
+class="btn"
+:class="contador >= 10 ? 'btn-success' : 'btn-danger'"
+
+{{ contador >= 10 ? 'META ALCANZADA' : 'PENDIENTE' }}
+</button>
+```
+
+## 🧩 5. Comunicación: Props y v-model
+
+### Props (Padre a Hijo)
+Permiten pasar datos a componentes reutilizables.
+``` typescript
+// En el componente Hijo
+defineProps<{ titulo: string }>();
+```
+
+### v-model (Inputs)
+Crea una conexión de doble vía entre el input y la variable.
+
+``` html
+<input type="number" v-model.number="contador">
+```
+
+## ⚡ 6. Eventos Comunes
+
+@click: Al hacer clic.
+
+@submit.prevent: Para formularios sin recargar página.
+
+``` typescript
+import { ref } from 'vue'; 
+const valor = ref(0);  
+const sumar = () => {
+  valor.value++; 
+};
+```
+
+``` html
+<button @click="sumar">Ejecutar Función</button>
+<h1>{{ valor}}</h1>
+```
+
+<<<<
